@@ -1,0 +1,70 @@
+<!-- Utility top bar (optional) -->
+<div class="bg-body-secondary small py-1 d-none d-lg-block">
+  <div class="container d-flex justify-content-between">
+    <div class="text-muted">
+      <span class="me-3">Call us: (555) 123‑4567</span>
+      <a href="#" class="link-secondary link-underline-opacity-0">Support</a>
+    </div>
+    <div>
+      <a href="#" class="link-secondary me-3">Docs</a>
+      <a href="#" class="link-secondary">Status</a>
+    </div>
+  </div>
+</div>
+<!-- Main header / navbar -->
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainNav">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img
+          src="https://dummyimage.com/32x32/ddd/000.png&text=◆"
+          alt=""
+          width="32"
+          height="32"
+          class="me-2 rounded"
+        />
+        <span class="fw-semibold">QR Code Generator</span>
+      </a>
+
+      <!-- Toggler -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#primaryNav"
+        aria-controls="primaryNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Nav links -->
+      <div class="collapse navbar-collapse" id="primaryNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLink="qr-request"
+              >Home</a
+            >
+          </li>
+        </ul>
+
+        <!-- Search + CTA -->
+        <form class="d-flex me-lg-3 mb-2 mb-lg-0" role="search">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </form>
+
+        <div class="d-flex align-items-center gap-2"></div>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,40 @@
+<div class="card-header">
+  <strong>QR Request</strong>
+</div>
+
+<!-- Inline small spinner -->
+
+@if(isGenerating()){
+<div class="d-flex justify-content-center mt-5 mb-5">
+  <div class="spinner-border spinner-border-md text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+} @else {
+<div class="p-2">
+  <div>
+    @if(isSuccessMessage){
+    <ngb-alert type="success"
+      >QR Codes are being generated the system will notify you once the
+      generation is completed.</ngb-alert
+    >
+    } @if(isErrorMessage){
+    <ngb-alert type="danger">Something went wrong.</ngb-alert>
+    }
+  </div>
+  <form [formGroup]="form">
+    <div>
+      <label for="">Start</label>
+      <input type="number" class="form-control" formControlName="start" />
+    </div>
+    <div class="mt-2">
+      <label for="">End</label>
+      <input type="number" class="form-control" formControlName="end" />
+    </div>
+    <div class="mt-2">
+      <button class="btn btn-primary" (click)="onSubmit()">Generate</button>
+    </div>
+  </form>
+</div>
+}

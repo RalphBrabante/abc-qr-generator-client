@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  @if(qrCodesData() && !qrCodesData()?.length && !isFetching() && !forceHideNoDataWarn()){
+  <ngb-alert type="warning" [dismissible]="false" class="mt-2 me-1 ms-1"
+    >No data found.</ngb-alert
+  >
+  }@else { @if(errorMessage()){
+  <ngb-alert type="danger" [dismissible]="false" class="mt-2 me-1 ms-1">{{
+    errorMessage()
+  }}</ngb-alert>
+
+  }
+  <table class="table table-sm table-striped table-hover mb-0 align-middle">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Series</th>
+        <th scope="col" class="text-end">Status</th>
+      </tr>
+    </thead>
+    <tbody id="qr-db-table-body" #tableDiv>
+      @for (qr of qrCodesData(); track $index) {
+      <tr>
+        <td>{{ qr.range }}</td>
+        <td class="text-end">
+          <span class="badge text-bg-success">Generated</span>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>

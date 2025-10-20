@@ -1,0 +1,25 @@
+<app-dashboard-header />
+
+<main>
+  <div class="row g-4">
+    <!-- Column 1 -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <strong>QR Data Table</strong>
+        </div>
+        <div class="card-body p-0">
+          <app-qr-database-table/>
+        </div>
+        <div class="card-footer small text-muted">Last updated just now</div>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100">
+        <app-qr-generator-form />
+      </div>
+    </div>
+  </div>
+</main>

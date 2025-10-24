@@ -1,0 +1,132 @@
+<section class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="step-progress d-flex justify-content-between">
+
+                <!-- Step 1 -->
+                <div class="step text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                </div>
+
+                <!-- Line -->
+                <div class="line"></div>
+
+                <!-- Step 2 (Active) -->
+                <div class="step active text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                </div>
+
+                <!-- Line -->
+                <div class="line"></div>
+
+                <!-- Step 3 -->
+                <div class="step text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5">
+
+    <div class="container">
+
+        <h5 class="fw-semibold mb-3">Select Payment Method</h5>
+        <div class="d-flex gap-3 flex-wrap mb-2">
+
+            <!-- Credit Card -->
+            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('card')"
+                [class.selected]="paymentMethod.value === 'card'">
+                <input type="radio" name="paymentMethod" value="card" class="d-none">
+                <img src="/credit-card.png" alt="Credit Card" class="payment-icon">
+
+            </label>
+
+            <!-- PayMaya -->
+            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('paymaya')"
+                [class.selected]="paymentMethod.value === 'paymaya'">
+                <input type="radio" name="paymentMethod" value="paymaya" class="d-none">
+                <img src="/paymaya.avif" alt="PayMaya" class="payment-icon">
+
+            </label>
+
+            <!-- GCash -->
+            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('gcash')"
+                [class.selected]="paymentMethod.value === 'gcash'">
+                <input type="radio" name="paymentMethod" value="gcash" class="d-none">
+                <img src="/gcash.jpg" alt="GCash" class="payment-icon">
+
+            </label>
+
+            <!-- QR Ph -->
+            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('qrph')"
+                [class.selected]="paymentMethod.value === 'qrph'">
+                <input type="radio" name="paymentMethod" value="qrph" class="d-none">
+                <img src="/qrph.png" alt="QRPh" class="payment-icon">
+
+            </label>
+
+        </div>
+
+
+
+
+        <!-- Step 2: Payment Form -->
+        <div class="card shadow-sm border-0 p-4 rounded-4">
+            <h4 class="fw-bold mb-4">
+                Step 2: Payment Details
+            </h4>
+
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Full Name (as on card)</label>
+                        <input type="text" class="form-control" placeholder="John Doe" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Email Address</label>
+                        <input type="email" class="form-control" placeholder="you@example.com" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Card Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-credit-card"></i></span>
+                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">Expiry Date</label>
+                        <input type="text" class="form-control" placeholder="MM/YY" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">CVV</label>
+                        <input type="text" class="form-control" placeholder="123" maxlength="3" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-medium">Name on Card</label>
+                    <input type="text" class="form-control" placeholder="Cardholder Name" />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary px-4" [routerLink]="['../qr-details']">←
+                        Back</button>
+                    <button type="submit" class="btn btn-primary px-4">Proceed to Processing →</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

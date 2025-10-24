@@ -1,0 +1,106 @@
+<section class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="step-progress d-flex justify-content-between">
+
+                <!-- Step 1 -->
+                <div class="step active text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+
+                </div>
+
+                <!-- Line -->
+                <div class="line"></div>
+
+                <!-- Step 2 -->
+                <div class="step text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+
+                </div>
+
+                <!-- Line -->
+                <div class="line"></div>
+
+                <!-- Step 3 -->
+                <div class="step text-center">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-spinner"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+
+        <!-- Step 1: QR Code Details Form -->
+        <div class="card shadow-sm border-0 p-4 rounded-4">
+            <h4 class="fw-bold mb-4">Step 1: Enter QR Code Details</h4>
+
+            <form [formGroup]="form">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">QR Code Prefix</label>
+                        <input type="text" class="form-control" placeholder="e.g. QR-" formControlName="qrPrefix"
+                            [ngClass]="{'is-invalid': form.get('qrPrefix')?.invalid && (form.get('qrPrefix')?.dirty || form.get('qrPrefix')?.touched)}" />
+
+                        <!-- Error Message -->
+                        <div class="text-danger mt-1"
+                            *ngIf="form.get('qrPrefix')?.invalid && (form.get('qrPrefix')?.dirty || form.get('qrPrefix')?.touched)">
+                            QR Code Prefix is required.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">How many Leading Zeros</label>
+                        <input type="number" class="form-control" placeholder="e.g. 3"
+                            formControlName="numberOfLeadingZeroes"
+                            [ngClass]="{'is-invalid': form.get('numberOfLeadingZeroes')?.invalid && (form.get('numberOfLeadingZeroes')?.dirty || form.get('numberOfLeadingZeroes')?.touched)}" />
+
+                        <div class="text-danger mt-1"
+                            *ngIf="form.get('numberOfLeadingZeroes')?.invalid && (form.get('numberOfLeadingZeroes')?.dirty || form.get('numberOfLeadingZeroes')?.touched)">
+                            Please enter a valid number of leading zeros.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Range (From)</label>
+                        <input type="number" class="form-control" placeholder="e.g. 1" formControlName="rangeFrom"
+                            [ngClass]="{'is-invalid': form.get('rangeFrom')?.invalid && (form.get('rangeFrom')?.dirty || form.get('rangeFrom')?.touched)}" />
+
+                        <div class="text-danger mt-1"
+                            *ngIf="form.get('rangeFrom')?.invalid && (form.get('rangeFrom')?.dirty || form.get('rangeFrom')?.touched)">
+                            Starting range is required.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Range (To)</label>
+                        <input type="number" class="form-control" placeholder="e.g. 500" formControlName="rangeTo"
+                            [ngClass]="{'is-invalid': form.get('rangeTo')?.invalid && (form.get('rangeTo')?.dirty || form.get('rangeTo')?.touched)}" />
+
+                        <div class="text-danger mt-1"
+                            *ngIf="form.get('rangeTo')?.invalid && (form.get('rangeTo')?.dirty || form.get('rangeTo')?.touched)">
+                            Ending range is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button class="btn btn-primary px-4" [disabled]="form.invalid" [routerLink]="['../payment']">Next → Payment</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>

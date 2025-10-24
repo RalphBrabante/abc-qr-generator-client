@@ -79,3 +79,13 @@
   .rounded-4 {
     border-radius: 1rem !important;
   }
+
+  
+
+  .pricing-box {
+    transition: 0.3s ease;
+  }
+  .pricing-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }

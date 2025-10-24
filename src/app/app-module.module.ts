@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppModuleRoutingModule } from './app-module-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 

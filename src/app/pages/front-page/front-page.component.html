@@ -1,66 +1,117 @@
-
-
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="hero-content">
-        <h1 class="display-4 fw-bold">Bulk QR Code Generation</h1>
-        <p class="lead">Generate thousands of sequential QR codes in minutes for business, events, products & more.</p>
-        <a href="#pricing" class="btn btn-glow btn-lg mt-3">Get Started →</a>
-    </div>
+  <div class="hero-content">
+    <h1 class="display-4 fw-bold">Bulk Sequential QR Code Generator</h1>
+    <p class="lead">
+      Generate thousands of sequential QR codes in minutes for business, events,
+      products & more.
+    </p>
+    <a href="#pricing" class="btn btn-glow btn-lg mt-3">Get Started →</a>
+  </div>
 </section>
 
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Affordable QR Code Generation</h2>
+      <p class="text-muted">
+        Get high-quality, bulk-generated QR codes at one of the lowest rates in
+        the market.
+      </p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="pricing-box text-center p-5 bg-white shadow rounded-4">
+          <h3 class="fw-bold mb-3">
+            Only <span class="text-primary">$0.017</span> per QR Code
+          </h3>
+          <p class="text-muted mb-4">
+            Whether you're generating 10 or 10,000 QR codes, the cost remains
+            incredibly low at
+            <strong>$0.017 each</strong>. No hidden fees. No extra charges.
+          </p>
+
+          <div class="d-flex justify-content-center gap-4 mb-4">
+            <div>
+              <h4 class="fw-bold text-primary">$0.017</h4>
+              <p class="small text-muted">Per QR Code</p>
+            </div>
+            <div>
+              <h4 class="fw-bold">1000</h4>
+              <p class="small text-muted">QR Codes = <strong>$17</strong></p>
+            </div>
+          </div>
+          <a
+            [routerLink]="['/order']"
+            class="btn btn-primary btn-lg rounded-pill px-4"
+          >
+            Generate QR Codes Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-5">How It Works</h2>
-        <div class="row g-4">
-
-            <!-- Step 1 -->
-            <div class="col-md-4">
-                <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
-                    <div class="icon-circle mb-3 mx-auto">
-                        <i class="bi bi-pencil-square"></i>
-                    </div>
-                    <h4 class="fw-bold">Fill in QR Details</h4>
-                    <p class="text-muted">
-                        Enter the required information such as Prefix, Leading Zeros, Range, and other settings.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="col-md-4">
-                <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
-                    <div class="icon-circle mb-3 mx-auto">
-                        <i class="bi bi-credit-card"></i>
-                    </div>
-                    <h4 class="fw-bold">Process the Payment</h4>
-                    <p class="text-muted">
-                        Secure your order using trusted payment methods to initiate QR code generation.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="col-md-4">
-                <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
-                    <div class="icon-circle mb-3 mx-auto">
-                        <i class="bi bi-cloud-download"></i>
-                    </div>
-                    <h4 class="fw-bold">Receive ZIP via Email</h4>
-                    <p class="text-muted">
-                        Your request is added to our queue. Once done, we send a ZIP file with all QR codes to your
-                        email.
-                    </p>
-                </div>
-            </div>
-
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5">How It Works</h2>
+    <div class="row g-4 align-items-center justify-content-center">
+      <!-- Step 1 -->
+      <div class="col-md-3 position-relative">
+        <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
+          <div class="icon-circle mb-3 mx-auto">
+            <i class="bi bi-pencil-square"></i>
+          </div>
+          <h4 class="fw-bold">Fill in QR Details</h4>
+          <p class="text-muted">
+            Enter the required information such as Prefix, Leading Zeros, Range,
+            and other settings.
+          </p>
         </div>
-    </div>
-</section>
+        <!-- Arrow -->
+        <i
+          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"
+        ></i>
+      </div>
 
+      <!-- Step 2 -->
+      <div class="col-md-3 position-relative">
+        <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
+          <div class="icon-circle mb-3 mx-auto">
+            <i class="bi bi-credit-card"></i>
+          </div>
+          <h4 class="fw-bold">Process the Payment</h4>
+          <p class="text-muted">
+            Secure your order using trusted payment methods to initiate QR code
+            generation.
+          </p>
+        </div>
+        <!-- Arrow -->
+        <i
+          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"
+        ></i>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-md-3">
+        <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100">
+          <div class="icon-circle mb-3 mx-auto">
+            <i class="bi bi-cloud-download"></i>
+          </div>
+          <h4 class="fw-bold">Receive ZIP via Email</h4>
+          <p class="text-muted">
+            Your request is added to our queue. Once done, we send a ZIP file
+            with all QR codes to your email.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer>
-    <p>© 2025 QR Bulk Generator | All Rights Reserved</p>
+  <p>© 2025 Bulk Sequential QR Code Generator | All Rights Reserved</p>
 </footer>

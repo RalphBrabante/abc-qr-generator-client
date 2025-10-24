@@ -6,10 +6,16 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/front-page/front-page-routing.module').then(
-        (m) => m.FrontPageRoutingModule
+      import('./pages/front-page/front-page.module').then(
+        (m) => m.FrontPageModule
       ),
-    canActivate: [authGuard],
+  },
+  {
+    path: 'order',
+    loadChildren: () =>
+      import('./pages/order-page/order-page.module').then(
+        (m) => m.OrderPageModule
+      ),
   },
   {
     path: 'login',
@@ -24,8 +30,6 @@ const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
-
-    
 ];
 
 @NgModule({

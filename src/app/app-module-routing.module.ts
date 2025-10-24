@@ -4,6 +4,14 @@ import { authGuard } from './core/guards/auth/auth.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('./pages/front-page/front-page-routing.module').then(
+        (m) => m.FrontPageRoutingModule
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
@@ -16,6 +24,8 @@ const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+
+    
 ];
 
 @NgModule({

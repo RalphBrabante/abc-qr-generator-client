@@ -218,7 +218,7 @@
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-outline-secondary px-4" [routerLink]="['../qr-details']">←
                         Back</button>
-                    <button type="submit" class="btn btn-primary px-4">Proceed to Processing →</button>
+                    <button type="submit" class="btn btn-primary px-4" [disabled]="!this.paymentForm.valid">Proceed to Processing →</button>
                 </div>
             </form>
 

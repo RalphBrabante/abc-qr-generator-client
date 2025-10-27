@@ -65,11 +65,11 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
           } else {
             {
               this.cardNumber.setValidators([Validators.required]);
-              this.expiryDate.setValidators([Validators.required]);
-              this.cvv.setValidators([
+              this.expiryDate.setValidators([
                 Validators.required,
                 Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/),
               ]);
+              this.cvv.setValidators([Validators.required]);
               this.nameOnCard.setValidators([Validators.required]);
             }
           }

@@ -1,0 +1,33 @@
+body {
+    background-color: #f8f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.error-container {
+    text-align: center;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.error-message {
+    font-size: 1.5rem;
+    color: #6c757d;
+}
+
+.btn-custom {
+    padding: 10px 30px;
+    border-radius: 50px;
+}
+
+.icon {
+    font-size: 5rem;
+    color: #6c757d;
+}

@@ -40,42 +40,6 @@
 
     <div class="container">
 
-        <h5 class="fw-semibold mb-3">Select Payment Method</h5>
-        <div class="d-flex gap-3 flex-wrap mb-2">
-
-            <!-- Credit Card -->
-            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('card')"
-                [class.selected]="paymentMethod.value === 'card'">
-                <input type="radio" name="paymentMethod" value="card" class="d-none">
-                <img src="/credit-card.png" alt="Credit Card" class="payment-icon">
-
-            </label>
-
-            <!-- PayMaya -->
-            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('paymaya')"
-                [class.selected]="paymentMethod.value === 'paymaya'">
-                <input type="radio" name="paymentMethod" value="paymaya" class="d-none">
-                <img src="/paymaya.avif" alt="PayMaya" class="payment-icon">
-
-            </label>
-
-            <!-- GCash -->
-            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('gcash')"
-                [class.selected]="paymentMethod.value === 'gcash'">
-                <input type="radio" name="paymentMethod" value="gcash" class="d-none">
-                <img src="/gcash.jpg" alt="GCash" class="payment-icon">
-
-            </label>
-
-            <!-- QR Ph -->
-            <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('qrph')"
-                [class.selected]="paymentMethod.value === 'qrph'">
-                <input type="radio" name="paymentMethod" value="qrph" class="d-none">
-                <img src="/qrph.png" alt="QRPh" class="payment-icon">
-
-            </label>
-
-        </div>
 
 
 
@@ -86,7 +50,7 @@
                 Step 2: Payment Details
             </h4>
 
-            <form>
+            <form [formGroup]="paymentForm">
                 <!-- Personal Information -->
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -110,53 +74,145 @@
                 <!-- Billing Information -->
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label class="form-label fw-medium">Billing Address</label>
-                        <input type="text" class="form-control" placeholder="123 Street Name" />
+                        <label class="form-label fw-medium">Address Line 1</label>
+                        <input type="text" class="form-control" placeholder="House No., Street, Barangay" />
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-medium">City</label>
-                        <input type="text" class="form-control" placeholder="City" />
+                        <label class="form-label fw-medium">Address Line 2 <small
+                                class="text-muted">(optional)</small></label>
+                        <input type="text" class="form-control" placeholder="Apartment, Suite, Unit, etc." />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-4">
+                        <label class="form-label fw-medium">City</label>
+                        <input type="text" class="form-control" placeholder="City" />
+                    </div>
+                    <div class="col-md-4">
                         <label class="form-label fw-medium">State/Province</label>
-                        <input type="text" class="form-control" placeholder="State" />
+                        <input type="text" class="form-control" placeholder="State or Province" />
                     </div>
                     <div class="col-md-4">
                         <label class="form-label fw-medium">ZIP/Postal Code</label>
                         <input type="text" class="form-control" placeholder="12345" />
                     </div>
-                    <div class="col-md-4">
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
                         <label class="form-label fw-medium">Country</label>
-                        <input type="text" class="form-control" placeholder="Country" />
+                        <select class="form-select" name="country" [value]="country.value"
+                            (change)="setCountry($event)">
+                            <option value="" disabled selected>Select Country</option>
+                            <option *ngFor="let c of countries()" [value]="c.code">
+                                {{ c.name }}
+                            </option>
+                        </select>
                     </div>
                 </div>
 
+
                 <!-- Card Information -->
-                <div class="row mb-3">
+                <div class="row mb-3" *ngIf="paymentMethod.value === 'card'">
+
+                    <!-- Card Number -->
                     <div class="col-md-6">
                         <label class="form-label fw-medium">Card Number</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-credit-card"></i></span>
-                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" />
+                            <input type="text" class="form-control" [formControl]="cardNumber"
+                                placeholder="1234 5678 9012 3456" mask="0000000000000000" maxlength="19" />
                         </div>
+                        <small class="text-danger" *ngIf="cardNumber?.touched && cardNumber.invalid">
+                            <span *ngIf="cardNumber?.errors?.['required']">Card number is
+                                required.</span>
+                            <span *ngIf="cardNumber?.errors?.['pattern']">Enter a valid 16-digit card
+                                number.</span>
+                        </small>
                     </div>
+
+                    <!-- Expiry Date -->
                     <div class="col-md-3">
                         <label class="form-label fw-medium">Expiry Date</label>
-                        <input type="text" class="form-control" placeholder="MM/YY" />
+                        <input type="text" class="form-control" type="text" placeholder="MM/YY" mask="00/00"
+                            [formControl]="expiryDate" />
+                        <small class="text-danger" *ngIf="expiryDate?.touched && expiryDate?.invalid">
+                            <span *ngIf="expiryDate?.errors?.['required']">Expiry date is
+                                required.</span>
+                            <span *ngIf="expiryDate?.errors?.['pattern']">Use format MM/YY.</span>
+                        </small>
+
+                        
                     </div>
+
+                    <!-- CVV -->
                     <div class="col-md-3">
                         <label class="form-label fw-medium">CVV</label>
-                        <input type="text" class="form-control" placeholder="123" maxlength="3" />
+                        <input type="text" class="form-control" formControlName="cvv" placeholder="123" maxlength="3"
+                            [formControl]="cvv" />
+                        <small class="text-danger" *ngIf="cvv?.touched && cvv?.invalid">
+                            <span *ngIf="cvv.errors?.['required']">CVV is required.</span>
+                            <span *ngIf="cvv.errors?.['pattern']">Enter a valid 3-digit CVV.</span>
+                        </small>
                     </div>
+
+                    <!-- Name on Card -->
+                    <div class="mb-4">
+                        <label class="form-label fw-medium">Name on Card</label>
+                        <input type="text" class="form-control" placeholder="Cardholder Name"
+                            [formControl]="nameOnCard" />
+                        <small class="text-danger" *ngIf="nameOnCard.touched && nameOnCard.invalid">
+                            <span *ngIf="nameOnCard?.errors?.['required']">Name is required.</span>
+                        </small>
+                    </div>
+
                 </div>
 
-                <div class="mb-4">
-                    <label class="form-label fw-medium">Name on Card</label>
-                    <input type="text" class="form-control" placeholder="Cardholder Name" />
+
+                <h5 class="fw-semibold mb-3">Select Payment Method</h5>
+                <div class="d-flex gap-3 flex-wrap mb-2">
+
+                    <!-- Credit Card -->
+                    <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('card')"
+                        [class.selected]="paymentMethod.value === 'card'">
+                        <input type="radio" name="paymentMethod" value="card" class="d-none">
+                        <img src="/credit-card.png" alt="Credit Card" class="payment-icon">
+
+                    </label>
+
+                    @if(country.value === "PH"){
+                    <!-- PayMaya -->
+                    <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('paymaya')"
+                        [class.selected]="paymentMethod.value === 'paymaya'">
+                        <input type="radio" name="paymentMethod" value="paymaya" class="d-none">
+                        <img src="/paymaya.avif" alt="PayMaya" class="payment-icon">
+
+                    </label>
+
+                    <!-- GCash -->
+                    <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('gcash')"
+                        [class.selected]="paymentMethod.value === 'gcash'">
+                        <input type="radio" name="paymentMethod" value="gcash" class="d-none">
+                        <img src="/gcash.jpg" alt="GCash" class="payment-icon">
+
+                    </label>
+
+
+                    <!-- QR Ph -->
+                    <label class="payment-option card p-3 shadow-sm text-center" (click)="setPaymentMethod('qrph')"
+                        [class.selected]="paymentMethod.value === 'qrph'">
+                        <input type="radio" name="paymentMethod" value="qrph" class="d-none">
+                        <img src="/qrph.png" alt="QRPh" class="payment-icon">
+
+                    </label>
+                    }
+
+
+
                 </div>
+
+
 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-between">
@@ -165,6 +221,9 @@
                     <button type="submit" class="btn btn-primary px-4">Proceed to Processing →</button>
                 </div>
             </form>
+
+
+
 
         </div>
     </div>

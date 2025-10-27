@@ -28,16 +28,22 @@ export class OrderFormService {
     );
 
     this.paymentForm = this.fb.group({
-      country: ['', Validators.required],
+      country: [null, Validators.required],
       paymentMethod: [null, Validators.required],
       fullName: [null, Validators.required],
+      addressLine1: [null, Validators.required],
+      addressLine2: [null],
+      city: [null, Validators.required],
+      stateProvince: [null],
+      zipPostal: [null, Validators.required],
+      phoneNumber: [null, Validators.required],
       emailAddress: [null, [Validators.required, Validators.email]],
-      cardNumber: [null, Validators.required],
+      cardNumber: [null, [Validators.required, Validators.pattern(/^\d{16}$/)]],
       expiryDate: [
         null,
-        [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)],
+        [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{4}$/)],
       ],
-      cvv: [null, Validators.required],
+      cvv: [null, [Validators.required, Validators.pattern(/^\d{3}$/)]],
       nameOnCard: [null, Validators.required],
     });
   }

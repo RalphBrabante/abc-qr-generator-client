@@ -30,7 +30,7 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.qrForm.invalid) {
-      // this.router.navigate(['/order/qr-details']);
+      this.router.navigate(['/order/qr-details']);
     }
 
     // Load countries JSON
@@ -55,7 +55,7 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
             this.cardNumber.clearValidators();
 
             this.expiryDate.reset();
-            this.cardNumber.clearValidators();
+            this.expiryDate.clearValidators();
 
             this.cvv.reset();
             this.cvv.clearValidators();
@@ -64,17 +64,55 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
             this.nameOnCard.clearValidators();
           } else {
             {
-              this.cardNumber.setValidators([Validators.required]);
+              this.cardNumber.setValidators([
+                Validators.required,
+                Validators.pattern(/^\d{16}$/),
+              ]);
               this.expiryDate.setValidators([
                 Validators.required,
-                Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/),
+                Validators.pattern(/^(0[1-9]|1[0-2])\/\d{4}$/),
               ]);
-              this.cvv.setValidators([Validators.required]);
+              this.cvv.setValidators([
+                Validators.required,
+                Validators.pattern(/^\d{3}$/),
+              ]);
               this.nameOnCard.setValidators([Validators.required]);
             }
           }
         },
       });
+  }
+
+  get fullName() {
+    return this.paymentForm.get('fullName') as FormControl;
+  }
+
+  get addressLine1() {
+    return this.paymentForm.get('addressLine1') as FormControl;
+  }
+
+  get addressLine2() {
+    return this.paymentForm.get('addressLine2') as FormControl;
+  }
+
+  get zipPostal() {
+    return this.paymentForm.get('zipPostal') as FormControl;
+  }
+
+  get city() {
+    return this.paymentForm.get('city') as FormControl;
+  }
+
+  get stateProvince() {
+    return this.paymentForm.get('stateProvince') as FormControl;
+  }
+
+  get emailAddress() {
+    return this.paymentForm.get('emailAddress') as FormControl;
+  }
+
+  get phoneNumber() {
+    return this.paymentForm.get('phoneNumber') as FormControl;
   }
 
   get paymentMethod() {

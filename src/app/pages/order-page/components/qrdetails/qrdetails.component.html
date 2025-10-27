@@ -46,6 +46,7 @@
             <h4 class="fw-bold mb-4">Step 1: Enter QR Code Details</h4>
 
             <form [formGroup]="form">
+
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label class="form-label fw-medium">QR Code Prefix</label>
@@ -82,6 +83,9 @@
                             *ngIf="form.get('rangeFrom')?.invalid && (form.get('rangeFrom')?.dirty || form.get('rangeFrom')?.touched)">
                             Starting range is required.
                         </div>
+                        <div class="text-danger" *ngIf="form.errors?.['rangeInvalid'] && form.touched">
+                            "To" value must be greater than "From" value.
+                        </div>
                     </div>
 
                     <div class="col-md-4">
@@ -96,8 +100,38 @@
                     </div>
                 </div>
 
+                @if(this.form.valid){
+                <div class="row g-4 justify-content-center mb-3">
+                    <!-- FROM Section -->
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow-sm p-3 text-center h-100">
+                            <h5 class="fw-bold text-secondary mb-3">FROM</h5>
+                            <qrcode [qrdata]="getQrCodeValueforGeneratorFrom" [width]="200" class="mx-auto d-block">
+                            </qrcode>
+                            <div class="mt-3 text-break small text-muted">
+                                {{ getQrCodeValueforGeneratorFrom }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TO Section -->
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow-sm p-3 text-center h-100">
+                            <h5 class="fw-bold text-secondary mb-3">TO</h5>
+                            <qrcode [qrdata]="getQrCodeValueforGeneratorTo" [width]="200" class="mx-auto d-block">
+                            </qrcode>
+                            <div class="mt-3 text-break small text-muted">
+                                {{ getQrCodeValueforGeneratorTo }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+
+
                 <div class="text-end">
-                    <button class="btn btn-primary px-4" [disabled]="form.invalid" [routerLink]="['../payment']">Next → Payment</button>
+                    <button class="btn btn-primary px-4" [disabled]="form.invalid" [routerLink]="['../payment']">Next →
+                        Payment</button>
                 </div>
             </form>
 

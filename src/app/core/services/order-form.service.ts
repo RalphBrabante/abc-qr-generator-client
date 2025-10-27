@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { rangeValidator } from '../../utils/customValidators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,11 @@ export class OrderFormService {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       qrPrefix: ['', Validators.required],
-      numberOfLeadingZeroes: [null, Validators.required],
+      numberOfLeadingZeroes: [0, Validators.required],
       rangeFrom: [null, Validators.required],
       rangeTo: [null, Validators.required],
+    },{
+      validators: rangeValidator
     });
 
     this.paymentForm = this.fb.group({

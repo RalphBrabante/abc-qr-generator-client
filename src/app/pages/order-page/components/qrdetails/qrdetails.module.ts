@@ -3,10 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { QrdetailsRoutingModule } from './qrdetails-routing.module';
 import { QRDetailsComponent } from './qrdetails.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [QRDetailsComponent],
-  imports: [ReactiveFormsModule, CommonModule, QrdetailsRoutingModule],
+  imports: [
+    QRCodeModule,
+    ReactiveFormsModule,
+    CommonModule,
+    QrdetailsRoutingModule,
+  ],
 })
 export class QrdetailsModule {}

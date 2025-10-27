@@ -87,6 +87,7 @@
             </h4>
 
             <form>
+                <!-- Personal Information -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label fw-medium">Full Name (as on card)</label>
@@ -98,6 +99,42 @@
                     </div>
                 </div>
 
+                <!-- Phone Number -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Phone Number</label>
+                        <input type="tel" class="form-control" placeholder="+1 234 567 8900" />
+                    </div>
+                </div>
+
+                <!-- Billing Information -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Billing Address</label>
+                        <input type="text" class="form-control" placeholder="123 Street Name" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">City</label>
+                        <input type="text" class="form-control" placeholder="City" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">State/Province</label>
+                        <input type="text" class="form-control" placeholder="State" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">ZIP/Postal Code</label>
+                        <input type="text" class="form-control" placeholder="12345" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Country</label>
+                        <input type="text" class="form-control" placeholder="Country" />
+                    </div>
+                </div>
+
+                <!-- Card Information -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label fw-medium">Card Number</label>
@@ -121,12 +158,14 @@
                     <input type="text" class="form-control" placeholder="Cardholder Name" />
                 </div>
 
+                <!-- Buttons -->
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-outline-secondary px-4" [routerLink]="['../qr-details']">←
                         Back</button>
                     <button type="submit" class="btn btn-primary px-4">Proceed to Processing →</button>
                 </div>
             </form>
+
         </div>
     </div>
 </section>

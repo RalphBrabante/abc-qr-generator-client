@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { OrderFormService } from '../../../../core/services/order-form.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import padNumber from '../../../../utils/padNumber';
+
 
 @Component({
   selector: 'app-qrdetails',
@@ -9,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class QRDetailsComponent {
   form!: FormGroup;
+  qrCodeValue!: string;
 
   constructor(private orderFormSvc: OrderFormService) {
     this.form = this.orderFormSvc.form;
@@ -28,5 +31,13 @@ export class QRDetailsComponent {
 
   get rangeTo() {
     return this.form.get('rangeTo') as FormControl;
+  }
+
+  get getQrCodeValueforGeneratorFrom() {
+    return this.qrPrefix.value + padNumber(this.rangeFrom.value, this.numberOfLeadingZeroes.value);
+  }
+
+   get getQrCodeValueforGeneratorTo() {
+    return this.qrPrefix.value + padNumber(this.rangeTo.value, this.numberOfLeadingZeroes.value);
   }
 }

@@ -17,7 +17,7 @@ export class OrderFormService {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
-        qrPrefix: ['', Validators.required],
+        qrPrefix: [''],
         numberOfLeadingZeroes: [0, Validators.required],
         rangeFrom: [null, Validators.required],
         rangeTo: [null, Validators.required],

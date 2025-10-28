@@ -367,7 +367,7 @@
           </label>
 
           <!-- QR Ph -->
-          <label
+          <!-- <label
             class="payment-option card p-3 shadow-sm text-center"
             (click)="setPaymentMethod('qrph')"
             [class.selected]="paymentMethod.value === 'qrph'"
@@ -379,7 +379,7 @@
               class="d-none"
             />
             <img src="/qrph.png" alt="QRPh" class="payment-icon" />
-          </label>
+          </label> -->
           }
         </div>
 
@@ -396,6 +396,7 @@
             type="submit"
             class="btn btn-primary px-4"
             [disabled]="!this.paymentForm.valid"
+            (click)="onSubmit()"
           >
             Proceed to Processing →
           </button>

@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { BaseComponent } from '../../../../core/common/base-component.directive';
 import { takeUntil } from 'rxjs';
+import { OrderService } from '../../../../core/services/order.service';
 
 @Component({
   selector: 'app-qr-payment-page',
@@ -17,11 +18,13 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
   paymentForm!: FormGroup;
   countries = signal<any[]>([]);
   selectedCountry = signal<string>('');
+  errorMessage!: string;
 
   constructor(
     private orderFormSvc: OrderFormService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private orderSvc: OrderService
   ) {
     super();
     this.qrForm = this.orderFormSvc.form;
@@ -139,11 +142,75 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
     return this.paymentForm.get('nameOnCard') as FormControl;
   }
 
+  get qrPrefix() {
+    return this.qrForm.get('qrPrefix') as FormControl;
+  }
+
+  get numberOfLeadingZeroes() {
+    return this.qrForm.get('numberOfLeadingZeroes') as FormControl;
+  }
+
+  get rangeFrom() {
+    return this.qrForm.get('rangeFrom') as FormControl;
+  }
+
+  get rangeTo() {
+    return this.qrForm.get('rangeTo') as FormControl;
+  }
+
   setCountry($event: any) {
     this.country.setValue($event.target.value);
   }
 
   setPaymentMethod(paymentMethod: 'qrph' | 'gcash' | 'paymaya' | 'card') {
     this.paymentMethod.setValue(paymentMethod);
+  }
+
+  onSubmit() {
+    this.errorMessage = '';
+
+    if (this.orderFormSvc.form.valid && this.orderFormSvc.paymentForm.valid) {
+      const orderDetails = {
+        qrDetails: {
+          qrPrefix: this.qrPrefix.value,
+          numberOfLeadingZeroes: this.numberOfLeadingZeroes.value,
+          rangeFrom: this.rangeFrom.value,
+          rangeTo: this.rangeTo.value,
+        },
+        paymentDetails: {
+          country: this.country.value,
+          paymentMethod: this.paymentMethod.value,
+          fullName: this.fullName.value,
+          addressLine1: this.addressLine1.value,
+          addressLine2: this.addressLine2.value,
+          city: this.city.value,
+          stateProvince: this.stateProvince.value,
+          zipPostal: this.zipPostal.value,
+          phoneNumber: this.phoneNumber.value,
+          emailAddress: this.emailAddress.value,
+          ...(this.paymentMethod.value === 'card' && {
+            cardNumber: this.cardNumber.value,
+            expiryDate: this.expiryDate.value,
+            cvv: this.cvv.value,
+            nameOnCard: this.nameOnCard.value,
+          }),
+        },
+      };
+
+      this.orderSvc
+        .createOrder(orderDetails)
+        .pipe(takeUntil(this.unsubscribe))
+        .subscribe({
+          next: (resp) => {
+            if (resp.data.attributes.next_action?.redirect) {
+              window.location.href =
+                resp.data.attributes.next_action?.redirect.url;
+            }
+          },
+          error: (error) => {
+            this.errorMessage = error.error.message;
+          },
+        });
+    }
   }
 }

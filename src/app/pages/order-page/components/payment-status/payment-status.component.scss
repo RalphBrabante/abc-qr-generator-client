@@ -1,0 +1,22 @@
+.status-icon {
+  width: 60px;
+  height: 60px;
+  border: 3px solid white;
+  transform: translateY(-40%);
+}
+
+.bg-success.bg-gradient {
+  background: linear-gradient(90deg, #198754, #20c997);
+}
+
+.bg-warning.bg-gradient {
+  background: linear-gradient(90deg, #ffc107, #ffb300);
+}
+
+.bg-danger.bg-gradient {
+  background: linear-gradient(90deg, #dc3545, #f87171);
+}
+
+.text-light-50 {
+  color: rgba(255, 255, 255, 0.8);
+}

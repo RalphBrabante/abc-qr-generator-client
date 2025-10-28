@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundPageComponent } from '../page-not-found-page/page-not-found-page.component';
 import { QrPaymentPageComponent } from './components/qr-payment-page/qr-payment-page.component';
 import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
+import { paymentIntentGuard } from '../../core/guards/payment-intent.guard';
 
 const routes: Routes = [
   {

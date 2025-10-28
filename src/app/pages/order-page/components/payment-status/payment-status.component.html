@@ -1,1 +1,134 @@
-<p>payment-status works!</p>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <!-- ✅ LOADING PLACEHOLDER -->
+      <div *ngIf="loading" class="card shadow border-0 rounded-4 p-4">
+        <div class="placeholder-glow text-center mb-4">
+          <span class="placeholder col-6 bg-secondary rounded-pill mb-3"></span>
+          <div>
+            <span class="placeholder col-4 bg-secondary rounded"></span>
+          </div>
+        </div>
+
+        <div class="placeholder-glow mb-3">
+          <span class="placeholder col-12 bg-light rounded mb-2 d-block" style="height: 16px"></span>
+          <span class="placeholder col-10 bg-light rounded mb-2 d-block" style="height: 16px"></span>
+          <span class="placeholder col-8 bg-light rounded mb-2 d-block" style="height: 16px"></span>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6">
+            <span class="placeholder col-6 bg-light rounded d-block" style="height: 20px"></span>
+          </div>
+          <div class="col-6">
+            <span class="placeholder col-6 bg-light rounded d-block" style="height: 20px"></span>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-outline-secondary disabled px-4 rounded-pill">
+            <span class="placeholder col-6 bg-secondary rounded"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ✅ ACTUAL PAYMENT DETAILS -->
+      <div *ngIf="!loading" class="card shadow border-0 rounded-4 overflow-hidden">
+        <div
+          class="card-header text-white text-center py-5 position-relative"
+          [ngClass]="{
+            'bg-success bg-gradient': paymentDetails.data.attributes.status === 'succeeded',
+            'bg-warning bg-gradient': paymentDetails.data.attributes.status === 'processing',
+            'bg-danger bg-gradient': paymentDetails.data.attributes.status === 'failed'
+          }"
+        >
+          <div class="position-absolute top-40 start-50 translate-middle">
+            <div class="status-icon rounded-circle d-flex align-items-center justify-content-center bg-white shadow-sm mt-4">
+              <i
+                class="fs-3"
+                [ngClass]="{
+                  'text-success bi bi-check-circle-fill': paymentDetails.data.attributes.status === 'succeeded',
+                  'text-warning bi bi-hourglass-split': paymentDetails.data.attributes.status === 'processing',
+                  'text-danger bi bi-x-circle-fill': paymentDetails.data.attributes.status === 'failed'
+                }"
+              ></i>
+            </div>
+          </div>
+
+          <h3 class="mt-5 fw-bold mb-0 text-uppercase">
+            {{ paymentDetails.data.attributes.status }}
+          </h3>
+          <p class="text-light-50 mb-0 small">Payment Status</p>
+        </div>
+
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <i
+              class="bi bi-credit-card-2-front text-primary fs-1 mb-3"
+              *ngIf="paymentDetails.data.attributes.payment_method_allowed.includes('card')"
+            ></i>
+            <h4 class="fw-bold mb-1">{{ paymentDetails.data.attributes.statement_descriptor }}</h4>
+            <p class="text-muted mb-0 small">
+              <i class="bi bi-hash"></i> {{ paymentDetails.data.id }}
+            </p>
+          </div>
+
+          <hr class="my-4" />
+
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-cash-coin text-success fs-5"></i>
+                <div>
+                  <p class="text-muted mb-0 small">Amount</p>
+                  <h5 class="fw-semibold mb-0">₱{{ paymentDetails.data.attributes.amount / 100 }}</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-currency-exchange text-info fs-5"></i>
+                <div>
+                  <p class="text-muted mb-0 small">Currency</p>
+                  <h5 class="fw-semibold mb-0">{{ paymentDetails.data.attributes.currency }}</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-calendar-event text-primary fs-5"></i>
+                <div>
+                  <p class="text-muted mb-0 small">Payment Date</p>
+                  <h6 class="mb-0">
+                    {{ paymentDetails.data.attributes.created_at * 1000 | date: 'medium' }}
+                  </h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-card-checklist text-secondary fs-5"></i>
+                <div>
+                  <p class="text-muted mb-0 small">Capture Type</p>
+                  <h6 class="mb-0">{{ paymentDetails.data.attributes.capture_type }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4" />
+
+          <div class="text-center mt-3">
+            <button class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm" (click)="goBack()">
+              <i class="bi bi-arrow-left-circle me-2"></i> Back to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

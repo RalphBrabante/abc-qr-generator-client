@@ -23,28 +23,25 @@
       <div class="col-md-6">
         <div class="pricing-box text-center p-5 bg-white shadow rounded-4">
           <h3 class="fw-bold mb-3">
-            Only <span class="text-primary">$0.017</span> per QR Code
+            Only <span class="text-primary">{{2 | currency : "PHP"}}</span> per QR Code
           </h3>
           <p class="text-muted mb-4">
             Whether you're generating 10 or 10,000 QR codes, the cost remains
             incredibly low at
-            <strong>$0.017 each</strong>. No hidden fees. No extra charges.
+            <strong>{{2 | currency : "PHP"}} each</strong>. No hidden fees. No extra charges.
           </p>
 
           <div class="d-flex justify-content-center gap-4 mb-4">
             <div>
-              <h4 class="fw-bold text-primary">$0.017</h4>
+              <h4 class="fw-bold text-primary">{{2 | currency : "PHP"}}</h4>
               <p class="small text-muted">Per QR Code</p>
             </div>
             <div>
-              <h4 class="fw-bold">1000</h4>
-              <p class="small text-muted">QR Codes = <strong>$17</strong></p>
+              <h4 class="fw-bold">{{100 | number}}</h4>
+              <p class="small text-muted">QR Codes = <strong>{{200 | currency : "PHP"}}</strong></p>
             </div>
           </div>
-          <a
-            [routerLink]="['/order/qr-details']"
-            class="btn btn-primary btn-lg rounded-pill px-4"
-          >
+          <a [routerLink]="['/order/qr-details']" class="btn btn-primary btn-lg rounded-pill px-4">
             Generate QR Codes Now
           </a>
         </div>
@@ -71,8 +68,7 @@
         </div>
         <!-- Arrow -->
         <i
-          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"
-        ></i>
+          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"></i>
       </div>
 
       <!-- Step 2 -->
@@ -89,8 +85,7 @@
         </div>
         <!-- Arrow -->
         <i
-          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"
-        ></i>
+          class="bi bi-arrow-right d-none d-md-block position-absolute top-50 end-0 translate-middle-y fs-3 text-primary"></i>
       </div>
 
       <!-- Step 3 -->

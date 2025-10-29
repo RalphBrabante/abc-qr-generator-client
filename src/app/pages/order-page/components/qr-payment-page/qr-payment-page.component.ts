@@ -202,14 +202,14 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
         .pipe(takeUntil(this.unsubscribe))
         .subscribe({
           next: (resp) => {
-            if (resp.data.attributes.last_payment_error !== null) {
-              window.location.href = `http://localhost:4200/order/payment-status?payment_intent_id=${resp.data.id}`;
-            }
-
-            if (resp.data.attributes.next_action?.redirect) {
+           
+            if (resp.data.attributes.next_action?.redirect.url) {
               window.location.href =
                 resp.data.attributes.next_action?.redirect.url;
-            }
+            } else if (resp.data.attributes.last_payment_error === null) {
+               window.location.href = `http://localhost:4200/order/payment-status?payment_intent_id=${resp.data.id}`;
+             }
+
           },
           error: (error) => {
             this.errorMessage = error.error.message;

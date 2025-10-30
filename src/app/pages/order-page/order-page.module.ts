@@ -7,14 +7,16 @@ import { QrPaymentPageComponent } from './components/qr-payment-page/qr-payment-
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { FooterModule } from '../../core/shared-component/footer/footer.module';
 
 @NgModule({
   declarations: [
-    OrderPageComponent,
-    QrPaymentPageComponent,
-    PaymentStatusComponent,
+    OrderPageComponent
   ],
   imports: [
+    FooterModule,
+    NgbAlert,
     NgxMaskDirective,
     DatePipe,
     ReactiveFormsModule,

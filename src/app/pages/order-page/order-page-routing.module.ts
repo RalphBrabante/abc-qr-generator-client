@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundPageComponent } from '../page-not-found-page/page-not-found-page.component';
 import { QrPaymentPageComponent } from './components/qr-payment-page/qr-payment-page.component';
 import { PaymentStatusComponent } from './components/payment-status/payment-status.component';
-import { paymentIntentGuard } from '../../core/guards/payment-intent.guard';
 
 const routes: Routes = [
   {
@@ -16,12 +15,18 @@ const routes: Routes = [
 
   {
     path: 'payment',
-    component: QrPaymentPageComponent,
+    loadChildren: () =>
+      import('./components/qr-payment-page/qr-payment-page.module').then(
+        (m) => m.QrPaymentPageModule
+      ),
   },
 
   {
     path: 'payment-status',
-    component: PaymentStatusComponent,
+    loadChildren: () =>
+      import('./components/payment-status/payment-status.module').then(
+        (m) => m.PaymentStatusModule
+      ),
   },
   {
     path: '**',

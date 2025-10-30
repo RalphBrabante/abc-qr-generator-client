@@ -5,8 +5,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
 import { BaseComponent } from '../../../../core/common/base-component.directive';
-import { takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { OrderService } from '../../../../core/services/order.service';
+import { ErrorMessage } from './errorMessage';
 
 @Component({
   selector: 'app-qr-payment-page',
@@ -18,7 +19,8 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
   paymentForm!: FormGroup;
   countries = signal<any[]>([]);
   selectedCountry = signal<string>('');
-  errorMessage!: string;
+  errorMessage: ErrorMessage = { errors: [] };
+  submitting: boolean = false;
 
   constructor(
     private orderFormSvc: OrderFormService,
@@ -37,9 +39,14 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
     }
 
     // Load countries JSON
-    this.http.get<any[]>('resources/countries.json').subscribe((data) => {
-      this.countries.set(data);
-    });
+    this.http
+      .get<any[]>('resources/countries.json')
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (data) => {
+          this.countries.set(data);
+        },
+      });
 
     this.country.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe({
       next: (val) => {
@@ -167,9 +174,13 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
   }
 
   onSubmit() {
-    this.errorMessage = '';
+    this.errorMessage.errors = [];
 
     if (this.orderFormSvc.form.valid && this.orderFormSvc.paymentForm.valid) {
+      this.orderFormSvc.form.disable();
+      this.orderFormSvc.paymentForm.disable();
+      this.submitting = true;
+
       const orderDetails = {
         qrDetails: {
           qrPrefix: this.qrPrefix.value,
@@ -199,7 +210,9 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
 
       this.orderSvc
         .createOrder(orderDetails)
-        .pipe(takeUntil(this.unsubscribe))
+        .pipe(
+          takeUntil(this.unsubscribe)
+        )
         .subscribe({
           next: (resp) => {
             if (resp.data.attributes.last_payment_error !== null) {
@@ -212,7 +225,17 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
             }
           },
           error: (error) => {
-            this.errorMessage = error.error.message;
+            if (error.error.message.errors) {
+              this.errorMessage.errors = error.error.message.errors;
+            } else {
+              this.errorMessage = error.message;
+            }
+
+            
+            this.orderFormSvc.form.enable();
+            this.orderFormSvc.paymentForm.enable();
+            this.submitting = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           },
         });
     }

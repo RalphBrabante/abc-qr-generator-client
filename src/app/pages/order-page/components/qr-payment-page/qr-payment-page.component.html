@@ -1,3 +1,17 @@
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" routerLink="/">
+            <i class="bi bi-qr-code me-2"></i> Sequetial Bulk QR Code Generator
+        </a>
+        <div class="ms-auto">
+            <button class="btn btn-outline-primary rounded-pill px-4" [routerLink]="['/']">
+                <i class="bi bi-house-door me-2"></i> Back to Home
+            </button>
+        </div>
+    </div>
+</nav>
+
 <section class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -110,7 +124,7 @@
             <input type="text" class="form-control" placeholder="City" [formControl]="city" />
 
             <small class="text-danger" *ngIf="city?.touched && city?.invalid">
-              <span *ngIf="city?.errors?.['required']">Address is required.</span>
+              <span *ngIf="city?.errors?.['required']">City is required.</span>
             </small>
           </div>
           <div class="col-md-4">
@@ -245,7 +259,7 @@
           </button>
 
           <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary px-4" [disabled]="!paymentForm.valid || submitting"
+          <button type="submit" class="btn btn-primary px-4" 
             (click)="onSubmit()">
             <ng-container *ngIf="!submitting; else loading">
               Proceed to Processing →
@@ -263,3 +277,5 @@
     </div>
   </div>
 </section>
+
+<app-footer/>

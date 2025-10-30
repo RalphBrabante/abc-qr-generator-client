@@ -1,0 +1,92 @@
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" routerLink="/">
+            <i class="bi bi-qr-code me-2"></i> Sequetial Bulk QR Code Generator
+        </a>
+        <div class="ms-auto">
+            <button class="btn btn-outline-primary rounded-pill px-4" [routerLink]="['/']">
+                <i class="bi bi-house-door me-2"></i> Back to Home
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Refund Policy Content -->
+<div class="container my-5">
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="card-body p-5">
+            <div class="mb-4 text-center">
+                <h1 class="fw-bold text-primary mb-3">Refund Policy</h1>
+                <p class="text-muted">
+                    <!-- Last updated: <strong>{{ today | date: 'MMMM d, y' }}</strong> -->
+                </p>
+            </div>
+
+            <p class="lead text-secondary">
+                Thank you for choosing our <strong>Bulk Sequential QR Code Generator</strong> service.
+                Please read this refund policy carefully before making a purchase.
+            </p>
+
+            <section class="mt-5">
+                <h3 class="fw-semibold text-dark mb-2">1. Non-Refundable Policy</h3>
+                <p>
+                    Once your payment has been successfully processed and your QR codes have been generated,
+                    your order is considered <strong>final and non-refundable</strong>.
+                    Our system instantly customizes and generates your codes, and due to the digital nature of this
+                    service,
+                    refunds are not possible after generation.
+                </p>
+            </section>
+
+            <section class="mt-4">
+                <h3 class="fw-semibold text-dark mb-2">2. Exceptions</h3>
+                <p>
+                    Refunds may only be considered under the following exceptional circumstances:
+                </p>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item border-0 ps-0">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Duplicate payment was made by mistake.
+                    </li>
+                    <li class="list-group-item border-0 ps-0">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        A verified technical issue on our servers prevented QR code generation.
+                    </li>
+                </ul>
+                <p>
+                    If you believe you qualify for a refund, please contact our support team at
+                    <a href="mailto:support@yourdomain.com" class="link-primary">{{"support@yourdomain.com"}}</a>
+                    within <strong>7 days</strong> of your transaction.
+                </p>
+            </section>
+
+            <section class="mt-4">
+                <h3 class="fw-semibold text-dark mb-2">3. Contact Us</h3>
+                <p>
+                    For any concerns or refund-related inquiries, reach out to us:
+                </p>
+                <p class="mb-0">
+                    📧 <a href="mailto:support@yourdomain.com"
+                        class="link-primary">{{"support@yourdomain.com"}}</a><br />
+                    🌐 <a href="/" class="link-primary">www.yourdomain.com</a>
+                </p>
+            </section>
+
+            <div class="alert alert-info mt-5 mb-0 rounded-3">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>Note:</strong> By completing your payment, you confirm that you have read and agreed to this
+                refund policy.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light py-3 mt-5 border-top">
+    <div class="container text-center">
+        <small class="text-muted">
+            <!-- © {{ today | date: 'y' }} QR Code Generator. All rights reserved. -->
+        </small>
+    </div>
+</footer>

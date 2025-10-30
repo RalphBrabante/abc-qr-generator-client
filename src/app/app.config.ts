@@ -7,4 +7,5 @@ import { provideRouter } from '@angular/router';
 //   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
 // };
 
+// export const baseURL = 'https://bulkqrcodegenerator.online/api/v1'
 export const baseURL = 'http://localhost:3000/api/v1'

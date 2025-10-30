@@ -1,3 +1,18 @@
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" routerLink="/">
+            <i class="bi bi-qr-code me-2"></i> Sequetial Bulk QR Code Generator
+        </a>
+        <div class="ms-auto">
+            <button class="btn btn-outline-primary rounded-pill px-4" [routerLink]="['/']">
+                <i class="bi bi-house-door me-2"></i> Back to Home
+            </button>
+        </div>
+    </div>
+</nav>
+
 <section class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -62,13 +77,13 @@
 
                     <div class="col-md-4">
                         <label class="form-label fw-medium">How many Leading Zeros</label>
-                        <input type="number" class="form-control" placeholder="e.g. 3"
+                        <input type="number" class="form-control" placeholder="e.g. 3" max="10" min="0"
                             formControlName="numberOfLeadingZeroes"
                             [ngClass]="{'is-invalid': form.get('numberOfLeadingZeroes')?.invalid && (form.get('numberOfLeadingZeroes')?.dirty || form.get('numberOfLeadingZeroes')?.touched)}" />
 
                         <div class="text-danger mt-1"
                             *ngIf="form.get('numberOfLeadingZeroes')?.invalid && (form.get('numberOfLeadingZeroes')?.dirty || form.get('numberOfLeadingZeroes')?.touched)">
-                            Please enter a valid number of leading zeros.
+                            Please enter a valid number of leading zeros and 10 of leading zeros is max.
                         </div>
                     </div>
                 </div>
@@ -139,4 +154,4 @@
     </div>
 </section>
 
-<app-footer/>
+<app-footer />

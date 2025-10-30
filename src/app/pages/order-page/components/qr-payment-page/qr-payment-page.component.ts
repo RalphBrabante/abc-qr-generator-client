@@ -175,6 +175,8 @@ export class QrPaymentPageComponent extends BaseComponent implements OnInit {
 
   onSubmit() {
     this.errorMessage.errors = [];
+       this.orderFormSvc.form.markAllAsTouched()
+      this.orderFormSvc.paymentForm.markAllAsTouched()
 
     if (this.orderFormSvc.form.valid && this.orderFormSvc.paymentForm.valid) {
       this.orderFormSvc.form.disable();

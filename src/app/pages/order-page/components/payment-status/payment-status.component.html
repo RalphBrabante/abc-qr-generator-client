@@ -1,3 +1,5 @@
+
+
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
@@ -55,8 +57,11 @@
           <h3 class="mt-5 fw-bold mb-0 text-uppercase">
             {{ paymentDetails.data.attributes.status }}
           </h3>
-          <p class="text-light-50 mb-0 small">Payment Status</p>
+       
           <p class="text-light-100 mb-0 mt-3">{{paymentDetails.data.attributes.last_payment_error?.failed_message}}</p>
+          <p class="text-light-100 mb-0 mt-3" *ngIf="paymentDetails.data.attributes.status === 'succeeded'">
+            We received your payment you should receive your QR Codes shortly.
+          </p>
         </div>
 
         <div class="card-body p-4">
@@ -65,7 +70,7 @@
               *ngIf="paymentDetails.data.attributes.payment_method_allowed.includes('card')"></i>
             <h4 class="fw-bold mb-1">{{ paymentDetails.data.attributes.statement_descriptor }}</h4>
             <p class="text-muted mb-0 small">
-              <i class="bi bi-hash"></i> {{ paymentDetails.data.id }}
+               Reference<i class="bi bi-hash"></i> {{ paymentDetails.data.id }}
             </p>
           </div>
 

@@ -78,6 +78,7 @@
                 <div>
                   <p class="text-muted mb-0 small">Amount</p>
                   <h5 class="fw-semibold mb-0">{{ paymentDetails.data.attributes.amount / 100 | currency :"PHP"}}</h5>
+
                 </div>
               </div>
             </div>
@@ -92,7 +93,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <div class="d-flex align-items-center gap-2">
                 <i class="bi bi-calendar-event text-primary fs-5"></i>
                 <div>
@@ -104,15 +105,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6">
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-card-checklist text-secondary fs-5"></i>
-                <div>
-                  <p class="text-muted mb-0 small">Capture Type</p>
-                  <h6 class="mb-0">{{ paymentDetails.data.attributes.capture_type }}</h6>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           <hr class="my-4" />
